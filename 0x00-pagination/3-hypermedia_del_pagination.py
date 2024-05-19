@@ -59,8 +59,8 @@ class Server:
                 j += 1
         result = {
             "index": index,
-            "next_index": j,
-            "page_size": _page_size,
+            "next_index": index + page_size,
+            "page_size": page_size,
             "data": data
         }
         return result

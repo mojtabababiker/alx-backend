@@ -2,7 +2,7 @@
 """
 Flask app with advance support for babel
 """
-from typing import Mapping, Union
+from typing import Union
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
@@ -28,7 +28,7 @@ babel = Babel(app)
 app.config.from_object(Config)
 
 
-def get_user(user_id: int) -> Union[Mapping, None]:
+def get_user(user_id: int) -> Union[object, None]:
     """
     get the user from users where the key = user_id
     parameters:
@@ -55,7 +55,7 @@ def before_request():
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale() -> Union[str, None]:
     """
     get the current user default local
     """
@@ -69,7 +69,7 @@ def get_locale() -> str:
 
 
 @app.route("/", strict_slashes=False)
-def home():
+def home() -> str:
     """
     Test route fot the application
     """

@@ -1,3 +1,2 @@
-flask
-Flask-Babel
+Flask-Babel==2.0.0
 pytz

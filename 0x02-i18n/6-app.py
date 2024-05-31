@@ -10,8 +10,8 @@ from flask_babel import Babel
 class Config:
     """Basic configuration class for the flask application"""
     LANGUAGES = ["en", "fr"]
-    defualt_locale = "en"
-    defualt_timezone = "UTC"
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 users = {
@@ -62,6 +62,7 @@ def get_locale() -> Union[str, None]:
     locale = request.args.get("locale", None)
     if locale is None and g.user:
         locale = g.user["locale"]
+        locale = locale if locale in Config.LANGUAGES else None
     if locale is None:
         locale = request.accept_languages.best_match(Config.LANGUAGES)
 
